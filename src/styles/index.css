@@ -10,3 +10,104 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.todos{
+    font-size: 100px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-bottom: 10%;
+    margin-top: 9%;
+    height: 700px;
+    width: 700px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color:rgb(230, 213, 191);
+    background-color: #e2e6eb; 
+}
+
+.square-list{
+    font-size: 24px;
+    text-align: start;
+    background-color: #eceef1;
+    margin-left: 50px;
+    margin-right: 50px;
+    color: rgb(82, 80, 80);
+    border-style:groove;
+    border-width: 1px;
+    border-color:#d4d6da;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.second-page{
+    margin-left: 53px;
+    margin-right: 53px;
+    background-color: #eceef1;
+    border-style:groove;
+    border-width: 1px;
+    border-color:#d4d6da;
+    height: 5px;
+}
+.third-page{
+    margin-left: 56px;
+    margin-right: 56px;
+    background-color: #eceef1;
+    border-style:groove;
+    border-width: 1px;
+    border-color:#d4d6da;
+    height: 5px;
+}
+.page{
+    display: flex;
+    flex-direction: column;
+    background-color: black; 
+}
+
+.user{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+li{
+  text-align: start;
+  list-style: none;
+  height: 60px;
+  padding-top: 10px;
+  padding-right: 10px;
+  background-color: #eceef1;
+  padding-left: 40px;
+  margin-left:-32px;
+  border-style:groove;
+  border-width: 1px;
+  border-color:#d4d6da
+  
+}
+
+li:hover .delete{
+    display: inline-block;
+}
+
+input[type=text]{
+    
+    background-color:#eceef1; 
+    border-style:groove;
+    border-width: 1px;
+    border-color:#d4d6da;
+    border-left: none;
+    border-right: none;
+    margin-left: -32px;
+    width: 598px;
+    padding-left: 40px;
+    height: 60px;   
+}
+
+input:focus {
+    outline:none;
+}
+
+.footer{
+    text-align: start;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+    font-size: 15px;  
+}

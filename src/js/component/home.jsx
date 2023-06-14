@@ -1,24 +1,119 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import { useState } from "react";
 
-//create your first component
+
 const Home = () => {
+	
+	const [tasks, setTasks] = useState([])
+	const [newTask,setNewTask] = useState({})
+	const [user, setUser] = useState("")
+
+
+	useEffect(() =>{
+		getTasks()
+	}, [])
+
+	const createUser = ()=>{
+		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
+			method: 'post',			
+			headers: {
+			  "Content-Type": "application/json"
+			},
+			body: JSON.stringify([])
+		  })
+		  .then(res =>{
+			return res.json();
+		})
+		  .then(resAsJson => {		 
+			  console.log(resAsJson); 
+			  getTasks()
+			})
+		  .catch((error) => {
+			  console.log(error);
+		  });
+
+	}
+
+	const getTasks =()=>{
+		if(user !== "") {
+		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
+      	method: 'get',
+      	headers: {
+        "Content-Type": "application/json"
+      	}
+    	})
+    	.then((res) => res.json())
+		.then(resAsJson =>{ 
+			console.log(resAsJson);
+			setTasks(resAsJson);
+			
+		})
+		.catch((error)=>{
+			console.log(error);
+		});
+    }
+	}
+	
+	const updateTasks = ()=>{
+		const newTasks = [...tasks, newTask]
+		setTasks(newTasks)
+		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
+			method: 'put',
+			body: JSON.stringify(newTasks),
+			headers: {
+			  "Content-Type": "application/json"
+			}
+		  })
+		  .then((res) => res.json())
+			 
+		  .then(resAsJson => {
+			  //Aquí es donde debe comenzar tu código después de que finalice la búsqueda
+			  console.log(resAsJson); 
+		  })
+		  .catch((error) => {
+			  console.log(error);
+		  });
+
+	}
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="page">
+			<div className="user">
+				<input 
+					type="text" 
+					placeholder="Enter a name..." 
+					value={user} 
+					onChange={(e) => setUser(e.target.value)}					  				
+					onKeyDown={(e) => {
+						if(e.key === 'Enter') {
+							createUser()}
+						}}
+					/>	
+			</div>
+				<div className="todos d-justify-content-arround">todos
+					<div className="square-list" >												
+						<input 
+						type="text" 
+						placeholder="Enter a new task..." 
+						value={newTask.label} 
+						onChange={(e) => setNewTask({label: e.target.value, done: false})}					  				
+						onKeyDown={(e) => {
+							if(e.key === 'Enter') {
+								updateTasks()}
+							}}
+						/>	
+					
+						<ul className="list">	
+							{tasks.map((task, index) => {
+								return <li key={index}><div>{task.label}</div></li>
+							})}										
+						</ul>
+					</div>
+					<div className="second-page"></div>
+					<div className="third-page"></div>
+
+				</div>
 		</div>
 	);
 };
