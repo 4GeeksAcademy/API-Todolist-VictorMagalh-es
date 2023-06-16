@@ -65,23 +65,43 @@ const Home = () => {
 			  "Content-Type": "application/json"
 			}
 		  })
-		  .then((res) => res.json())
-			 
+		  .then((res) => res.json())		 
 		  .then(resAsJson => {
-			  //Aquí es donde debe comenzar tu código después de que finalice la búsqueda
 			  console.log(resAsJson); 
 		  })
 		  .catch((error) => {
 			  console.log(error);
 		  });
-
 	}
+
+	const deleteUser=()=>{
+		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
+		method: 'delete',
+		headers: {
+			"Content-Type": "application/json"
+		}
+    	})
+		.then(res => {
+			console.log(res.ok); 
+			return res.json(); 
+		})
+		.then(() => {
+			setUser("")
+			setTasks([])
+		})
+		.catch(error => {
+			console.log(error);
+		});
+		}
+	
+	const tasksLenght = tasks.length + " item left"
 
 	return (
 		<div className="page">
 			<div className="user">
 				<input 
 					type="text" 
+					className="username"
 					placeholder="Enter a name..." 
 					value={user} 
 					onChange={(e) => setUser(e.target.value)}					  				
@@ -89,8 +109,9 @@ const Home = () => {
 						if(e.key === 'Enter') {
 							createUser()}
 						}}
-					/>	
+					/>		
 			</div>
+			<button className="delete" onClick={deleteUser}>Delete User</button>
 				<div className="todos d-justify-content-arround">todos
 					<div className="square-list" >												
 						<input 
@@ -109,6 +130,7 @@ const Home = () => {
 								return <li key={index}><div>{task.label}</div></li>
 							})}										
 						</ul>
+						<div className="footer">{tasksLenght} </div>
 					</div>
 					<div className="second-page"></div>
 					<div className="third-page"></div>

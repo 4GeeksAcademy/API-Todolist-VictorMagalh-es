@@ -16,7 +16,7 @@
     margin-left: auto;
     margin-right: auto; 
     margin-bottom: 10%;
-    margin-top: 9%;
+    margin-top: 5%;
     height: 700px;
     width: 700px;
     font-family: 'Be Vietnam Pro', sans-serif;
@@ -60,12 +60,47 @@
     flex-direction: column;
     background-color: black; 
 }
-
 .user{
-    margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
+    margin-left: auto;
 }
+
+.username{
+    margin-top: 50px;
+    padding-top: 20px;
+    width: 100px;
+    display: flex;
+    border-radius: 10px;
+    background-color:#eceef1;
+    margin-right: auto;
+    margin-left: auto;
+}
+.delete{ 
+      background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+      border: 0;
+      border-radius: 12px;
+      color: #FFFFFF;
+      cursor: pointer;
+      margin-right: 100px;
+      font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 50px;
+      outline: transparent;
+      padding: 0 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: box-shadow .2s ease-in-out;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+      width: 150px;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 40px;
+}
+    
 li{
   text-align: start;
   list-style: none;
@@ -81,22 +116,17 @@ li{
   
 }
 
-li:hover .delete{
-    display: inline-block;
-}
-
-input[type=text]{
-    
+input[type=text]{  
     background-color:#eceef1; 
     border-style:groove;
     border-width: 1px;
     border-color:#d4d6da;
     border-left: none;
     border-right: none;
-    margin-left: -32px;
     width: 598px;
-    padding-left: 40px;
-    height: 60px;   
+    padding-left: 20px;
+    height: 60px;
+    margin-right: 50px;
 }
 
 input:focus {
