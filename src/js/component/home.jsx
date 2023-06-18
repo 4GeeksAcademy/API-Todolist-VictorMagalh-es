@@ -8,6 +8,7 @@ const Home = () => {
 	const [tasks, setTasks] = useState([])
 	const [newTask,setNewTask] = useState({})
 	const [user, setUser] = useState("")
+	const [initialValueTask, setInitialValueTask] = useState("");
 
 
 	useEffect(() =>{
@@ -46,8 +47,7 @@ const Home = () => {
     	.then((res) => res.json())
 		.then(resAsJson =>{ 
 			console.log(resAsJson);
-			setTasks(resAsJson);
-			
+			setTasks(resAsJson);		
 		})
 		.catch((error)=>{
 			console.log(error);
@@ -57,7 +57,8 @@ const Home = () => {
 	
 	const updateTasks = ()=>{
 		const newTasks = [...tasks, newTask]
-		setTasks(newTasks)
+		setTasks(newTasks);
+		setNewTask("");
 		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
 			method: 'put',
 			body: JSON.stringify(newTasks),
@@ -87,7 +88,6 @@ const Home = () => {
 		})
 		.then(() => {
 			setUser("")
-			setTasks([])
 		})
 		.catch(error => {
 			console.log(error);
@@ -117,11 +117,13 @@ const Home = () => {
 						<input 
 						type="text" 
 						placeholder="Enter a new task..." 
-						value={newTask.label} 
+						value={newTask.label || initialValueTask} 
 						onChange={(e) => setNewTask({label: e.target.value, done: false})}					  				
 						onKeyDown={(e) => {
 							if(e.key === 'Enter') {
-								updateTasks()}
+								updateTasks();
+								setInitialValueTask("");
+							} 	
 							}}
 						/>	
 					

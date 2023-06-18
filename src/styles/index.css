@@ -72,8 +72,7 @@
     display: flex;
     border-radius: 10px;
     background-color:#eceef1;
-    margin-right: auto;
-    margin-left: auto;
+    margin-left: 30px;
 }
 .delete{ 
       background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
