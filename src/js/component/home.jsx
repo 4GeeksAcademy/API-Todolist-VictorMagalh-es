@@ -75,6 +75,25 @@ const Home = () => {
 		  });
 	}
 
+	const deleteTasks = (index)=>{
+		const updatedTasks = tasks.filter((_, i) => i !== index);
+		setTasks(updatedTasks);
+		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
+			method: 'put',
+			body: JSON.stringify(updatedTasks),
+			headers: {
+			  "Content-Type": "application/json"
+			}
+		  })
+		  .then((res) => res.json())		 
+		  .then(resAsJson => {
+			  console.log(resAsJson); 
+		  })
+		  .catch((error) => {
+			  console.log(error);
+		  });
+	}
+
 	const deleteUser=()=>{
 		fetch('https://assets.breatheco.de/apis/fake/todos/user/' + user, {
 		method: 'delete',
@@ -87,7 +106,8 @@ const Home = () => {
 			return res.json(); 
 		})
 		.then(() => {
-			setUser("")
+			setUser("")	
+			setTasks([])
 		})
 		.catch(error => {
 			console.log(error);
@@ -129,7 +149,8 @@ const Home = () => {
 					
 						<ul className="list">	
 							{tasks.map((task, index) => {
-								return <li key={index}><div>{task.label}</div></li>
+								return <li key={index}><div>{task.label} <button className="deleteTask" id={index} onClick={()=>deleteTasks(index)}>X</button>
+								</div></li>
 							})}										
 						</ul>
 						<div className="footer">{tasksLenght} </div>

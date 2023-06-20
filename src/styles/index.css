@@ -140,3 +140,14 @@ input:focus {
     margin-top: 0px;
     font-size: 15px;  
 }
+li:hover .deleteTask{
+    display: inline-block;
+}
+
+.deleteTask{
+    display: none;
+    float: right;
+    border: none;
+    background-color: #eceef1;
+    color:gray;
+}
